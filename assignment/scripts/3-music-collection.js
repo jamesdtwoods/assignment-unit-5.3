@@ -16,11 +16,16 @@ console.log('running addToCollection: ', addToCollection(myCollection, 'White Bl
 console.log('running addToCollection: ', addToCollection(myCollection, 'Is This It', 'The Strokes', 2001));
 console.log('running addToCollection: ', addToCollection(myCollection, 'Icky Thump', 'The White Stripes', 2007));
 
-
 console.log(myCollection);
 
 
+function showCollection(collection) {
+  for (let i in collection) {
+    console.log(`${collection[i].title} by ${collection[i].artist}, published in ${collection[i].yearPublished}`);
+  } // end collection loop
+} //end showCollection
 
+console.log('running showCollection: ', showCollection(myCollection));
 
 
 
