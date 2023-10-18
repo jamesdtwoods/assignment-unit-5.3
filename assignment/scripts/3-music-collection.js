@@ -29,12 +29,29 @@ console.log('running showCollection: ', showCollection(myCollection));
 
 
 
+function findByArtist(collection, artist) {
+  for (let i in collection) {
+    console.log('in findByArtist:', collection[i], artist);
+    if (collection[i].artist === artist) {
+    return collection[i];
+    } //end artist logic
+  } //end collection loop
+  return false;
+} //end findByArtist
 
+console.log('running findByArtist ', findByArtist(myCollection, 'The White Stripes'));
 
+// function findByArtist2(collection, artist) {
+//   for (let artists of collection) {
+//     console.log('in findByArtist2:', artist);
+//     if (artists === artist) {
+//     return true;
+//     } //end artist logic
+//   } //end collection loop
+//   return false;
+// } //end findByArtist
 
-
-
-
+// console.log('running findByArtist ', findByArtist2(myCollection, 'The White Stripes'));
 
 
 
