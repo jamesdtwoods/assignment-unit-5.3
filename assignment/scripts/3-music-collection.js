@@ -34,7 +34,7 @@ function findByArtist(collection, artist) {
   let artistArray = [];
   let i=0;
   while (i < collection.length) {
-    console.log('in findByArtist:', collection[i], artist);
+    console.log(`in findByArtist:  ${collection[i]} ${artist}`);
     if (collection[i].artist === artist) {
     artistArray.push(collection[i]);
       } //end artist logic
@@ -51,44 +51,23 @@ console.log('running findByArtist ', findByArtist(myCollection, 'The Killers'));
 
 console.log("STREEEETCH GOALS");
 
-// let searchCriteria = {artist, yearPublished};
+let searchCriteria = [];
 
-// function search(collection, searchCriteria){
-//   let artistYearArray = [];
-//   console.log('in search:', collection, artist, yearPublished);
-//   function searchCriteriaFunction(collection, searchCriteria) {
-//     let i=0;
-//     while (i < collection.length) {
-//       console.log('in searchCriteria:', collection[i], artist, yearPublished);
-//       if (collection[i].artist === artist && collection[i].yearPublished === yearPublished) {
-//       artistYearArray.push(collection[i]);
-//         } //end searchCriteria logic
-//       i++;
-//       } //end searchCriteria loop
-//     return artistYearArray;
-//   } //end search
-// }
-
-function search(collection, artist, yearPublished){
+function search(collection, searchCriteria){
   let artistYearArray = [];
-  console.log('in search:', collection, artist, yearPublished);
-  function searchCriteriaFunction(collection, artist, yearPublished) {
-    let i=0;
-    while (i < collection.length) {
-      console.log('in searchCriteria:', collection[i], artist, yearPublished);
-      if (collection[i].artist === artist && collection[i].yearPublished === yearPublished) {
+  console.log('in search:', collection, searchCriteria.artist, searchCriteria.year);
+    for (i=0; i < collection.length; i++) {
+      console.log('in for search loop:', collection[i], searchCriteria.artist, searchCriteria.year);
+      if (collection[i].artist === searchCriteria.artist && collection[i].yearPublished === searchCriteria.year) {
       artistYearArray.push(collection[i]);
-        } //end searchCriteria true logic
-      else {
-        return false; 
-      }//end searchCriteria false logic
-      i++;
-      } //end searchCriteria loop
-    return artistYearArray;
-  } //end search
-}
+      return artistYearArray;
+        } //end if true logic
+      } //end for loop
+      return artistYearArray; 
+ } //end search
 
-console.log('running search ', search(myCollection, 'The White Stripes', 2007));
+console.log('running search ', search(myCollection, {artist: 'The White Stripes', year: 2007}));
+console.log('running search ', search(myCollection, {artist: 'The White Stripes', year: 1999}));
 
 
 // PLEASE DO NOT MODIFY THIS. Just leave it down here at the bottom. Think of it
