@@ -28,9 +28,10 @@ function showCollection(collection) {
 console.log('running showCollection: ', showCollection(myCollection));
 
 
-let artistArray = [];
+
 
 function findByArtist(collection, artist) {
+  let artistArray = [];
   let i=0;
   while (i < collection.length) {
     console.log('in findByArtist:', collection[i], artist);
@@ -43,7 +44,8 @@ function findByArtist(collection, artist) {
 } //end findByArtist
 
 console.log('running findByArtist ', findByArtist(myCollection, 'The White Stripes'));
-
+console.log('running findByArtist ', findByArtist(myCollection, 'The Strokes'));
+console.log('running findByArtist ', findByArtist(myCollection, 'The Killers'));
 
 
 
