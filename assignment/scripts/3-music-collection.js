@@ -49,6 +49,48 @@ console.log('running findByArtist ', findByArtist(myCollection, 'The Killers'));
 
 
 
+console.log("STREEEETCH GOALS");
+
+// let searchCriteria = {artist, yearPublished};
+
+// function search(collection, searchCriteria){
+//   let artistYearArray = [];
+//   console.log('in search:', collection, artist, yearPublished);
+//   function searchCriteriaFunction(collection, searchCriteria) {
+//     let i=0;
+//     while (i < collection.length) {
+//       console.log('in searchCriteria:', collection[i], artist, yearPublished);
+//       if (collection[i].artist === artist && collection[i].yearPublished === yearPublished) {
+//       artistYearArray.push(collection[i]);
+//         } //end searchCriteria logic
+//       i++;
+//       } //end searchCriteria loop
+//     return artistYearArray;
+//   } //end search
+// }
+
+function search(collection, artist, yearPublished){
+  let artistYearArray = [];
+  console.log('in search:', collection, artist, yearPublished);
+  function searchCriteriaFunction(collection, artist, yearPublished) {
+    let i=0;
+    while (i < collection.length) {
+      console.log('in searchCriteria:', collection[i], artist, yearPublished);
+      if (collection[i].artist === artist && collection[i].yearPublished === yearPublished) {
+      artistYearArray.push(collection[i]);
+        } //end searchCriteria true logic
+      else {
+        return false; 
+      }//end searchCriteria false logic
+      i++;
+      } //end searchCriteria loop
+    return artistYearArray;
+  } //end search
+}
+
+console.log('running search ', search(myCollection, 'The White Stripes', 2007));
+
+
 // PLEASE DO NOT MODIFY THIS. Just leave it down here at the bottom. Think of it
 // as a lil' chunk of friendly code that you don't need to understand right now.
 // (It's used for automated testing.)
