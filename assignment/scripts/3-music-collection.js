@@ -9,7 +9,7 @@ function addToCollection(collection, title, artist, yearPublished) {
   return {title, artist, yearPublished};
 } //end addToCollection
 
-console.log('running addToCollection: ', addToCollection(myCollection, 'Definately Maybe', 'Oasis', 1994));
+console.log('running addToCollection: ', addToCollection(myCollection, 'Definitely Maybe', 'Oasis', 1994));
 console.log('running addToCollection: ', addToCollection(myCollection, 'Dookie', 'Green Day', 1994));
 console.log('running addToCollection: ', addToCollection(myCollection, 'Odelay', 'Beck', 1996));
 console.log('running addToCollection: ', addToCollection(myCollection, 'White Blood Cells', 'The White Stripes', 2001));
@@ -49,7 +49,7 @@ console.log('running findByArtist ', findByArtist(myCollection, 'The Killers'));
 
 
 
-console.log("STREEEETCH GOALS");
+console.log("STRETCH GOALS");
 
 let searchCriteria = [];
 
@@ -66,8 +66,82 @@ function search(collection, searchCriteria){
       return artistYearArray; 
  } //end search
 
-console.log('running search ', search(myCollection, {artist: 'The White Stripes', year: 2007}));
+console.log('running search ', search(myCollection, {artist: 'The White Stripes', year: 2001}));
 console.log('running search ', search(myCollection, {artist: 'The White Stripes', year: 1999}));
+
+
+console.log("STREEEETCHY GOALS");
+
+let myCollectionS = [];
+
+function addToCollectionS(collection, title, artist, yearPublished, tracks) {
+  console.log('in addToCollectioinS:', collection, title, artist, yearPublished, tracks);
+  collection.push({title, artist, yearPublished, tracks});
+  return {title, artist, yearPublished, tracks};
+} //end addToCollection
+
+
+console.log('running addToCollectionS: ', addToCollectionS(myCollectionS, 'Definitely Maybe', 'Oasis', 1994,
+ [{name:"Rock 'n' Roll Star", duration:'5:23'}, 
+ {name:'Columbia', duration:'6:17'},
+ {name:'Cigarettes & Alcohol', duration:'4:49'}]));
+
+ console.log('running addToCollectionS: ', addToCollectionS(myCollectionS, 'Dookie', 'Green Day', 1994,
+ [{name:'Longview', duration:'3:59'}, 
+ {name:'Welcome to Paradise', duration:'3:44'},
+ {name:'Basket Case', duration:'3:02'}]));
+
+ console.log('running addToCollectionS: ', addToCollectionS(myCollectionS, 'White Blood Cells', 'The White Stripes', 2001,
+ [{name:"Dead Leaves and the Dirty Ground", duration:'3:04'}, 
+ {name:"Hotel Yorba", duration:'2:10'},
+ {name:"We're Going to Be Friends", duration:'2:22'}]));
+
+
+function showCollectionS(collection) {
+  for (let i in collection) {
+    console.log(`${collection[i].title} by ${collection[i].artist}, published in ${collection[i].yearPublished}`);
+    for (let t in collection[i].tracks) {
+      console.log(`${t}. Name: ${collection[i].tracks[t].name} Duration ${collection[i].tracks[t].duration}`);
+    } // end tracks loop
+  } // end collection loop
+  return collection;
+} //end showCollection
+
+console.log('running showCollection: ', showCollectionS(myCollectionS));
+
+
+let searchCriteriaS = [];
+
+function searchS(collection, searchCriteria){
+  let artistYearArrayS = [];
+  console.log('in search:', collection, searchCriteria.artist, searchCriteria.year);
+  if (searchCriteria.trackName !== undefined){
+    for (let i in collection) {
+      console.log('in collection loop', collection, searchCriteria.trackName);
+      for (let t in collection[i].tracks) {
+        console.log(`${t}. Name: ${collection[i].tracks[t].name}`);
+        if (collection[i].tracks[t].name === searchCriteria.trackName) {
+          artistYearArrayS.push(collection[i].tracks[t]);
+        }
+      } // end tracks loop
+    } 
+    return artistYearArrayS;  
+  } else {
+      for (i=0; i < collection.length; i++) {
+        console.log('in for search loop:', collection[i], searchCriteria.artist, searchCriteria.year);
+        if (collection[i].artist === searchCriteria.artist && collection[i].yearPublished === searchCriteria.year) {
+        artistYearArrayS.push(collection[i]);
+        return artistYearArrayS;
+          } //end if true logic
+        } //end for loop
+    }  
+    return artistYearArrayS; 
+ } //end search
+
+console.log('running search ', searchS(myCollectionS, {artist: 'The White Stripes', year: 2001, trackName: 'Hotel Yorba'}));
+console.log('running search ', searchS(myCollectionS, {artist: 'Green Day', year: 1994}));
+
+
 
 
 // PLEASE DO NOT MODIFY THIS. Just leave it down here at the bottom. Think of it
