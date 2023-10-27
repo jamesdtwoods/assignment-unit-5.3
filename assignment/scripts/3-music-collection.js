@@ -54,23 +54,32 @@ console.log('running findByArtist for The Killers', findByArtist(myCollection, '
 console.log("STRETCH GOALS");
 
 function search(collection, searchCriteria){
+
   let artistYearArray = [];
-  console.log('in search collection', collection, 'search criteria:', searchCriteria.artist, searchCriteria.year);
+  if (searchCriteria === undefined || searchCriteria.artist === undefined || searchCriteria.year === undefined ||
+     searchCriteria === '' || searchCriteria.artist === '' || searchCriteria.year === '') {
+    return collection; 
+  } else {
     for (let i=0; i < collection.length; i++) {
       console.log('in for search loop:', collection[i], searchCriteria.artist, searchCriteria.year);
       if (collection[i].artist === searchCriteria.artist && collection[i].yearPublished === searchCriteria.year) {
       artistYearArray.push(collection[i]);
-        } //end if true logic
-      } //end for loop
-    return artistYearArray; 
+        }//end if true logic
+      }//end for loop
+  }
+  return artistYearArray; 
  } //end search
 
 
 
 
+
+
 console.log('running search for white stripes', search(myCollection, { artist: 'The White Stripes', year: 2001 }));
-console.log('running search for 2001', search(myCollection, {artist: '', year: 2001}));
-console.log('running search for nothing', search(myCollection, {}));
+console.log('running search for white stripes 3k', search(myCollection, { artist: 'The White Stripes', year: 3000 }));
+
+// console.log('running search for 2001', search(myCollection, {artist: '', year: 2001}));
+console.log('running search for nothing', search(myCollection));
 
 
 
@@ -139,6 +148,8 @@ function searchS(collection, searchCriteria){
     }  
   return artistYearArrayS; 
  } //end search
+
+
 
 console.log('running search for hotel yorba', searchS(myCollectionS, {artist: 'The White Stripes', year: 2001, trackName: 'Hotel Yorba'}));
 console.log('running search for green day', searchS(myCollectionS, {artist: 'Green Day', year: 1994}));
