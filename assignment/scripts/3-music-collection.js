@@ -9,7 +9,7 @@ function addToCollection(collection, title, artist, yearPublished) {
     artist,
     yearPublished
   };
-  collection.push({album});
+  collection.push(album);
   return album;
 } //end addToCollection
 
@@ -25,7 +25,7 @@ console.log(myCollection);
 
 function showCollection(collection) {
   for (let i=0; i<collection.length; i++) {
-    console.log(`${collection[i].album.title} by ${collection[i].album.artist}, published in ${collection[i].album.yearPublished}`);
+    console.log(`${collection[i].title} by ${collection[i].artist}, published in ${collection[i].yearPublished}`);
   } // end collection loop
   return true;
 } //end showCollection
@@ -37,7 +37,7 @@ console.log('running showCollection: ', showCollection(myCollection));
 function findByArtist(collection, artist) {
   let artistArray = [];
   for (let i=0; i<collection.length; i++) {
-    if (collection[i].album.artist === artist) {
+    if (collection[i].artist === artist) {
     artistArray.push(collection[i]);
       } //end artist logic
     }//end collection loop
@@ -55,21 +55,32 @@ console.log("STRETCH GOALS");
 
 function search(collection, searchCriteria){
   let artistYearArray = [];
-  console.log('in search:', collection, searchCriteria.artist, searchCriteria.year);
-    for (i=0; i < collection.length; i++) {
+  console.log('in search collection', collection, 'search criteria:', searchCriteria.artist, searchCriteria.year);
+    for (let i=0; i < collection.length; i++) {
       console.log('in for search loop:', collection[i], searchCriteria.artist, searchCriteria.year);
-      if (collection[i].album.artist === searchCriteria.artist && collection[i].album.yearPublished === searchCriteria.year) {
+      if (collection[i].artist === searchCriteria.artist && collection[i].yearPublished === searchCriteria.year) {
       artistYearArray.push(collection[i]);
         } //end if true logic
       } //end for loop
-      return artistYearArray; 
+    return artistYearArray; 
  } //end search
 
-console.log('running search ', search(myCollection, {artist: 'The White Stripes', year: 2001}));
-console.log('running search ', search(myCollection, {artist: 'The White Stripes', year: 1999}));
-console.log('running search ', search(myCollection, {artist: '', year: 2001}));
-console.log('running search ', search(myCollection, {}));
 
+
+
+console.log('running search ', search(myCollection, { artist: 'The White Stripes', year: 2001 }));
+// console.log('running search ', search(myCollection, {artist: '', year: 2001}));
+// console.log('running search ', search(myCollection, {}));
+
+
+
+// let testSearchObject = {
+//   artist: "The White Stripes", 
+//   yearPublished: 2001
+// };
+// console.log("***************************");
+// console.log('running search ', search(myCollection, testSearchObject));
+// console.log("***************************");
 
 console.log("STREEEETCHY GOALS");
 
@@ -99,10 +110,10 @@ console.log('running addToCollectionS: ', addToCollectionS(myCollectionS, 'Defin
 
 
 function showCollectionS(collection) {
-  for (let i in collection) {
-    console.log(`${collection[i].title} by ${collection[i].artist}, published in ${collection[i].yearPublished}`);
-    for (let t in collection[i].tracks) {
-      console.log(`${t}. Name: ${collection[i].tracks[t].name} Duration ${collection[i].tracks[t].duration}`);
+  for (let i=0; i < collection.length; i++) {
+    console.log(`${collection[i].title} by ${collection[i].artist}, published in ${collection[i].yearPublished}:`);
+    for (let j=0; j < collection[i].tracks.length; j++) {
+      console.log(`       ${j+1}. Name: ${collection[i].tracks[j].name} Duration ${collection[i].tracks[j].duration}`);
     } // end tracks loop
   } // end collection loop
   return collection;
@@ -111,28 +122,27 @@ function showCollectionS(collection) {
 console.log('running showCollection: ', showCollectionS(myCollectionS));
 
 
-let searchCriteriaS = [];
+// let searchCriteriaS = [];
 
 function searchS(collection, searchCriteria){
   let artistYearArrayS = [];
   console.log('in search:', collection, searchCriteria.artist, searchCriteria.year);
   if (searchCriteria.trackName !== undefined){
-    for (let i in collection) {
+    for (let i=0; i < collection.length; i++) {
       console.log('in collection loop', collection, searchCriteria.trackName);
-      for (let t in collection[i].tracks) {
-        console.log(`${t}. Name: ${collection[i].tracks[t].name}`);
-        if (collection[i].tracks[t].name === searchCriteria.trackName) {
+      for (let j=0; j < collection[i].length; j++) {
+        console.log(`${j}. Name: ${collection[i].tracks[j].name}`);
+        if (collection[i].tracks[j].name === searchCriteria.trackName) {
           artistYearArrayS.push(collection[i]);
         }
       } // end tracks loop
     } 
     return artistYearArrayS;  
   } else {
-      for (i=0; i < collection.length; i++) {
+      for (let i=0; i < collection.length; i++) {
         console.log('in for search loop:', collection[i], searchCriteria.artist, searchCriteria.year);
         if (collection[i].artist === searchCriteria.artist && collection[i].yearPublished === searchCriteria.year) {
         artistYearArrayS.push(collection[i]);
-        return artistYearArrayS;
           } //end if true logic
         } //end for loop
     }  
